@@ -1,4 +1,4 @@
-DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -6,30 +6,70 @@ DOCTYPE html>
 
 <style>
 body{
-    background:#0b0f1a;
-    color:white;
-    font-family:Arial;
-    text-align:center;
+    background: #0b0f1a;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 h1{
-    color:#ff00ff;
-    font-size:40px;
+    color: #ff00ff;
+    font-size: 50px;
+    margin-top: 40px;
 }
 
 .box{
-    border:1px solid #ff00ff;
-    padding:20px;
-    margin:20px;
-    border-radius:10px;
+    border: 2px solid #ff00ff;
+    padding: 25px;
+    margin: 30px auto;
+    border-radius: 15px;
+    max-width: 600px;
+    background: rgba(255,0,255,0.05);
+    transition: transform 0.3s;
+}
+
+.box:hover{
+    transform: scale(1.05);
+}
+
+h2{
+    color: #ff66ff;
+    margin-bottom: 15px;
+}
+
+p{
+    font-size: 18px;
+    line-height: 1.5;
+    color: #ddd;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+}
+
+li{
+    margin: 5px 0;
+    font-size: 18px;
 }
 
 button{
-    background:#ff00ff;
-    color:white;
-    border:none;
-    padding:10px 20px;
-    border-radius:8px;
+    background: #ff00ff;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom: 40px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+button:hover{
+    background: #ff66ff;
+    transform: scale(1.1);
 }
 </style>
 </head>
@@ -40,19 +80,25 @@ button{
 
 <div class="box">
 <h2>About Me</h2>
-<p>I am learning programming and web development.</p>
+<p>I am a game developer specializing in <strong>Python</strong> and <strong>C</strong>.</p>
+<p>I have completed <strong>2 studies in Assembly language</strong>.</p>
+<p>I also develop <strong>websites</strong> and <strong>applications</strong>.</p>
 </div>
 
 <div class="box">
 <h2>My Skills</h2>
-<p>HTML</p>
-<p>CSS</p>
-<p>JavaScript</p>
+<ul>
+<li>Game Development: Python, C</li>
+<li>Assembly Language (2 studies)</li>
+<li>Web Development: HTML, CSS, JavaScript</li>
+<li>Application Development</li>
+</ul>
 </div>
 
 <div class="box">
 <h2>Projects</h2>
 <p>My first website</p>
+<p>Game projects (Python & C)</p>
 </div>
 
 <button>Contact Me</button>
