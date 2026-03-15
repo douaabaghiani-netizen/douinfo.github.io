@@ -1,0 +1,306 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<title>EthicMind</title><style>
+
+body{
+font-family:Arial;
+margin:0;
+text-align:center;
+background:#f4f4f4;
+}
+
+/* Home Page */
+
+#start{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(120deg,#ff9966,#ffcc66);
+color:white;
+}
+
+#start h1{
+font-size:60px;
+margin-bottom:10px;
+}
+
+#start p{
+font-size:22px;
+}
+
+#start button{
+padding:15px 40px;
+font-size:20px;
+border:none;
+border-radius:10px;
+background:white;
+color:#333;
+cursor:pointer;
+margin-top:20px;
+}
+
+/* Quiz */
+
+#quiz{
+padding:40px;
+display:none;
+}
+
+.question{
+font-size:26px;
+margin-bottom:30px;
+}
+
+.option{
+display:block;
+margin:10px auto;
+padding:15px;
+width:60%;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+background:#ddd;
+}
+
+.option:hover{
+background:#bbb;
+}
+
+/* Result */
+
+#result{
+display:none;
+padding:40px;
+}
+
+.utilitarian{
+background:#4CAF50;
+color:white;
+padding:30px;
+border-radius:12px;
+width:60%;
+margin:auto;
+}
+
+.emotional{
+background:#2196F3;
+color:white;
+padding:30px;
+border-radius:12px;
+width:60%;
+margin:auto;
+}
+
+.logical{
+background:#9C27B0;
+color:white;
+padding:30px;
+border-radius:12px;
+width:60%;
+margin:auto;
+}
+
+.justice{
+background:#FFC107;
+padding:30px;
+border-radius:12px;
+width:60%;
+margin:auto;
+}
+
+</style></head><body><!-- Home --><div id="start"><h1>EthicMind</h1><p>Discover Your Ethical Personality</p><button onclick="startTest()">Start Test</button>
+
+</div><!-- Quiz --><div id="quiz"><div id="question" class="question"></div><button class="option" onclick="answer('utilitarian')" id="o1"></button>
+<button class="option" onclick="answer('emotional')" id="o2"></button>
+<button class="option" onclick="answer('logical')" id="o3"></button>
+<button class="option" onclick="answer('justice')" id="o4"></button>
+
+</div><!-- Result --><div id="result"><h2>Your Ethical Personality</h2><div id="personalityBox"></div></div><script>
+
+let questions=[
+
+{q:"You see a hungry person on the street.",
+a1:"Help because it benefits society",
+a2:"Help because I feel compassion",
+a3:"Think logically about the situation",
+a4:"Help because it is morally right"},
+
+{q:"A friend lies to protect someone.",
+a1:"If the result is good it's acceptable",
+a2:"I understand their feelings",
+a3:"I analyze the situation logically",
+a4:"Lying is always wrong"},
+
+{q:"You find a lost wallet.",
+a1:"Think about the best outcome",
+a2:"Imagine how the owner feels",
+a3:"Look for the most rational solution",
+a4:"Return it because it's the right thing"},
+
+{q:"Would you sacrifice one person to save five?",
+a1:"Yes to save more lives",
+a2:"No because it's emotionally painful",
+a3:"I calculate the consequences",
+a4:"No because it's unjust"},
+
+{q:"A difficult decision at work.",
+a1:"Choose what benefits the team",
+a2:"Consider people's feelings",
+a3:"Choose the most efficient solution",
+a4:"Choose the fairest option"},
+
+{q:"A child breaks something.",
+a1:"Think about the consequences",
+a2:"Feel sympathy for the child",
+a3:"Analyze the cause",
+a4:"They must take responsibility"},
+
+{q:"Someone steals food to survive.",
+a1:"Survival is more important",
+a2:"I feel sorry for them",
+a3:"Think about practical solutions",
+a4:"Stealing is still wrong"},
+
+{q:"Choosing a team leader.",
+a1:"Who gets the best results",
+a2:"Who understands people",
+a3:"Who is most efficient",
+a4:"Who is most fair"},
+
+{q:"A friend makes a mistake.",
+a1:"Focus on the final outcome",
+a2:"Think about their feelings",
+a3:"Analyze the mistake",
+a4:"Mistakes must be corrected"},
+
+{q:"Someone asks for help.",
+a1:"If it benefits many people",
+a2:"Because I feel empathy",
+a3:"If the solution is logical",
+a4:"Because it's a duty"},
+
+{q:"Group decision.",
+a1:"Best for the majority",
+a2:"Protect people's feelings",
+a3:"Most logical choice",
+a4:"Most fair choice"},
+
+{q:"Conflict between two people.",
+a1:"Find a solution for everyone",
+a2:"Understand their emotions",
+a3:"Analyze the problem",
+a4:"Apply justice"},
+
+{q:"Choosing a career.",
+a1:"Benefit society",
+a2:"Make me emotionally fulfilled",
+a3:"Be efficient and logical",
+a4:"Be fair and ethical"},
+
+{q:"Helping a stranger.",
+a1:"If it benefits society",
+a2:"Because of compassion",
+a3:"If it's practical",
+a4:"Because it's morally right"},
+
+{q:"Making a difficult decision.",
+a1:"Think about the outcome",
+a2:"Think about emotions",
+a3:"Think logically",
+a4:"Think about justice"}
+
+];
+
+let index=0;
+
+let scores={
+utilitarian:0,
+emotional:0,
+logical:0,
+justice:0
+};
+
+function startTest(){
+
+document.getElementById("start").style.display="none";
+document.getElementById("quiz").style.display="block";
+
+showQuestion();
+
+}
+
+function showQuestion(){
+
+let q=questions[index];
+
+document.getElementById("question").innerText=q.q;
+
+document.getElementById("o1").innerText=q.a1;
+document.getElementById("o2").innerText=q.a2;
+document.getElementById("o3").innerText=q.a3;
+document.getElementById("o4").innerText=q.a4;
+
+}
+
+function answer(type){
+
+scores[type]++;
+
+index++;
+
+if(index<questions.length){
+
+showQuestion();
+
+}
+
+else{
+
+showResult();
+
+}
+
+}
+
+function showResult(){
+
+document.getElementById("quiz").style.display="none";
+document.getElementById("result").style.display="block";
+
+let max=0;
+let personality="";
+
+for(let key in scores){
+
+if(scores[key]>max){
+max=scores[key];
+personality=key;
+}
+
+}
+
+let text="";
+
+if(personality=="utilitarian"){
+text="<div class='utilitarian'><h1>Utilitarian</h1><p>You aim to create the greatest good for the greatest number of people.</p></div>";
+}
+
+if(personality=="emotional"){
+text="<div class='emotional'><h1>Emotional</h1><p>Your decisions are guided by empathy and human feelings.</p></div>";
+}
+
+if(personality=="logical"){
+text="<div class='logical'><h1>Logical</h1><p>You rely on rational thinking and logical analysis.</p></div>";
+}
+
+if(personality=="justice"){
+text="<div class='justice'><h1>Justice</h1><p>You believe moral principles and fairness must always be respected.</p></div>";
+}
+
+document.getElementById("personalityBox").innerHTML=text;
+
+}
+
+</script></body></html>
